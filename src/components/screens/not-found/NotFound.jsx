@@ -1,6 +1,19 @@
+import { useEffect } from 'react'
+import { useAuth } from '../../../hooks/useAuth'
 import Layout from '../../layout/layout'
+import { useNavigate } from 'react-router-dom'
 
 const NotFound = () => {
+	const { isAuth } = useAuth()
+
+	const navigate = useNavigate()
+
+	useEffect(() => {
+		if (!isAuth) {
+			navigate('/auth')
+		}
+	}, [])
+
 	return (
 		<>
 			<Layout heading='Page not found' />
